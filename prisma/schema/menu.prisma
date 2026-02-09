@@ -1,0 +1,17 @@
+model MenuItem {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  price       Decimal
+  image_url   String
+  cuisine     String      // e.g., "panjabi", "gujarati", "continental"
+  isActive    Boolean     @default(true)
+  maxAllowedQuantity Decimal @default(10)
+  orderItems  OrderItem[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([cuisine, name , isActive])
+  @@unique([name, cuisine])
+ 
+}

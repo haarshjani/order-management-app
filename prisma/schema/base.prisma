@@ -1,0 +1,11 @@
+generator client {
+  provider        = "prisma-client"
+  previewFeatures = ["prismaSchemaFolder"]
+  output   = "../generated/prisma"
+  binaryTargets = ["native"]
+
+}
+
+datasource db {
+  provider = "sqlite"
+}

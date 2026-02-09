@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "noEmit": true
+  },
+  "include": [
+    "tests/**/*.ts",
+    "src/**/*.ts",
+    "prisma/generated/prisma/**/*.ts"
+  ]
+}
