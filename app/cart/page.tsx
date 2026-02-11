@@ -44,7 +44,7 @@ const CartPage = () => {
 
 
   const cartItems = useMemo(() => {
-    const grouped = groupBy(state.cart || [], "id");
+    const grouped = groupBy(state?.cart || [], "id");
     return Object.keys(grouped).map((id) => {
       const items = grouped[id];
       return {
@@ -53,7 +53,7 @@ const CartPage = () => {
         amount: items.length * items[0].price,
       };
     });
-  }, [state.cart]);
+  }, [state?.cart]);
 
   const cartTotal = useMemo(() => 
     cartItems.reduce((sum, item) => sum + item.amount, 0), 
@@ -105,7 +105,7 @@ const CartPage = () => {
               </Alert>
             )}
 
-            {cartItems.map((item, index) => (
+            {cartItems?.map((item, index) => (
               <MenuItemCard
                 key={item.id}
                 index={index}
@@ -119,7 +119,7 @@ const CartPage = () => {
             
           </div>
           <div>
-            {cartItems.length > 0 && (
+            {cartItems?.length > 0 && (
               <div className="mt-4 p-4 bg-gray-100 rounded text-right font-bold text-lg">
                 Total: ₹{cartTotal.toFixed(2)}
               </div>
@@ -178,7 +178,7 @@ const CartPage = () => {
         description={`Place order worth ₹${cartTotal.toFixed(2)}?`}
         confirmText="Yes, Place Order"
         cancelText="Review Cart"
-        loading={createOrderMutation.isLoading}
+        loading={createOrderMutation?.isLoading}
         onConfirm={onFinalConfirm}
       />
     </>
