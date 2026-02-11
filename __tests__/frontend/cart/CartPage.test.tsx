@@ -49,25 +49,39 @@ describe("CartPage UI Tests", () => {
     const submitButton = screen.getByRole("button", { name: /place order/i });
     await user.click(submitButton);
 
-    // Check Zod validation messages
+  
     expect(await screen.findByText(/name is required/i)).toBeInTheDocument();
     expect(await screen.findByText(/enter a valid 10-digit/i)).toBeInTheDocument();
     
-    // Verify mutate was NOT called
+  
     expect(mockMutate).not.toHaveBeenCalled();
   });
 
-  it("shows error for invalid phone number format", async () => {
+  it(" shows error for typing invalid details", async () => {
     const user = userEvent.setup();
     render(<CartPage />);
 
-    const phoneInput = screen.getByLabelText(/phone number/i);
-    await user.type(phoneInput, "12345");
+    const addressInput = screen.getByLabelText(/address/i);
+    const phoneInput = screen.getByLabelText(/phone/i)
+    const nameInput = screen.getByLabelText(/name/i)
+     const submitButton = screen.getByRole("button", { name: /place order/i })
+  
+    await user.type(addressInput, "Gujarat");
+    await user.type(phoneInput, "123");
+     
     
-    const submitButton = screen.getByRole("button", { name: /place order/i });
+   
     await user.click(submitButton);
 
     expect(await screen.findByText(/enter a valid 10-digit/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Address must be at least /i)).toBeInTheDocument();
+    expect(await screen.findByText(/is required/i)).toBeInTheDocument();
+
+    await user.clear(addressInput)
+     await user.type(addressInput, "GujaratGujaratGujaratGujaratGujaratGujaratGujaratGujaratGujaratGujaratGujaratGujaratGujarat");
+      await user.click(submitButton);
+
+     expect(await screen.findByText(/Address must be less then/i)).toBeInTheDocument();
   });
 
 it("should show an alert if total cart items exceed 25", async () => {
@@ -87,7 +101,7 @@ it("should show an alert if total cart items exceed 25", async () => {
   render(<CartPage />);
 
   await user.type(screen.getByLabelText(/name/i), "Harsh");
-  await user.type(screen.getByLabelText(/address/i), "Gujarat");
+  await user.type(screen.getByLabelText(/address/i), "Gujarat 370000111");
   await user.type(screen.getByLabelText(/phone/i), "9876543210");
   
   await user.click(screen.getByRole("button", { name: /place order/i }));
