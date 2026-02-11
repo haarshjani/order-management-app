@@ -1,9 +1,10 @@
 import {db} from '@/lib/db';
-import { MenuItem } from '@/prisma/generated/prisma/client';
+import { MenuItem, Prisma } from '@prisma/client';
+
 
 export class MenuItemRepository {
 
-  async findAll(prismaArgs: any) {
+  async findAll(prismaArgs: Prisma.MenuItemFindManyArgs) {
     return db.menuItem.findMany(prismaArgs);
   }
   

@@ -1,8 +1,8 @@
 import { AppError } from './central_error';
 
 export class BadRequestError extends AppError {
-  constructor(message = 'Bad Request') {
-    super(message, 400);
+  constructor(message = 'Bad Request',data?:any) {
+    super(message, 400, data);
   }
 }
 export class IllegalArgumentError extends AppError {
@@ -23,7 +23,7 @@ export class UnauthorizedError extends AppError {
 }
 
 export class ForbiddenError extends AppError {
-  constructor(message = 'Forbidden') {
-    super(message, 403);
+  constructor(message = 'Bad Request',data?:any) {
+    super(message, 403, data);
   }
 }

@@ -1,5 +1,5 @@
 // repositories/order.repository.ts
-import { Order, OrderStatus } from '@/prisma/generated/prisma/client';
+import { Order, OrderStatus } from '@prisma/client';
 import { db } from '@/lib/db';
 
 
@@ -41,7 +41,19 @@ export class OrderRepository {
   async getOrderById(orderId: string): Promise<Order | null> {
     return db.order.findUnique({
       where: { id: orderId },
-      include: { items: true },
+      include: { items: {include: {
+        menuItem: true, 
+      }, },}
+    });
+  }
+
+  async getAllOrderByPhone(phone: string): Promise<Order[]> {
+    return db.order.findMany({
+      where: { phone },
+      orderBy: { updatedAt: 'desc' },
+      include: { items: {include: {
+        menuItem: true, 
+      }, },}
     });
   }
 
