@@ -12,7 +12,7 @@ const service = new MenuItemService();
  * GET /api/menu-items
  * ?cuisine=panjabi&isActive=true&page=1&limit=10
  */
-export const GET = withErrorHandler(async (req: NextRequest) => {
+export const GET = withErrorHandler(async (req: NextRequest, context: { params: Record<string, string>}) => {
 
   console.log("controller reached");
   
