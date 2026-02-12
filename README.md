@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Food order APP
 
-## Getting Started
+A brief description of your project goes here.
 
-First, run the development server:
+---
+
+## 📦 Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (v18 or later recommended)
+- npm
+- A running database (SQLITE /PostgreSQL / MySQL / MongoDB — as configured in Prisma)
+- Git
+
+---
+
+## 🛠 Installation & Setup
+
+Follow these steps to set up and run the project in development mode.
+
+---
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+---
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3️⃣ Setup Environment Variables
+
+Create a `.env` file in the root directory and add:
+
+```env
+DATABASE_URL="your_database_connection_string"
+```
+
+Make sure your database is running before continuing.
+
+---
+
+### 4️⃣ Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+---
+
+### 5️⃣ Push Database Schema
+
+```bash
+npx prisma db push
+```
+
+---
+
+### 6️⃣ Seed the Database
+
+```bash
+npx prisma db seed
+```
+
+---
+
+### 7️⃣ Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Your application should now be running at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🗄 Prisma Commands Reference
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|----------|------------|
+| `npx prisma generate` | Generate Prisma Client |
+| `npx prisma db push` | Push schema to database |
+| `npx prisma db seed` | Seed the database |
+| `npx prisma studio` | Open Prisma Studio |
+| `npx prisma migrate dev` | Create and apply migration |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## ⚠️ Important Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Always run `npx prisma generate` after modifying `schema.prisma`.
+- Make sure your database service is running before executing Prisma commands.
+- If you face dependency issues, try:
+  
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+⭐ If you like this project, don't forget to star the repository!
